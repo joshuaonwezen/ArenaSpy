@@ -1,16 +1,11 @@
-/*
- * FeaturePage Messages
- *
- * This contains all the text for the FeaturePage component.
- */
 import { defineMessages } from 'react-intl';
 
-export const scope = 'boilerplate.containers.FeaturePage';
+export const scope = 'boilerplate.containers.SearchPage';
 
 export default defineMessages({
   header: {
     id: `${scope}.header`,
-    defaultMessage: 'Features',
+    defaultMessage: 'Search',
   },
   scaffoldingHeader: {
     id: `${scope}.scaffolding.header`,
@@ -56,7 +51,7 @@ export default defineMessages({
   },
   cssHeader: {
     id: `${scope}.css.header`,
-    defaultMessage: 'Features',
+    defaultMessage: 'Search',
   },
   cssMessage: {
     id: `${scope}.css.message`,

@@ -20,16 +20,11 @@ import {
   makeSelectError,
 } from 'containers/App/selectors';
 import H2 from 'components/H2';
-import ReposList from 'components/ReposList';
-import AtPrefix from './AtPrefix';
 import CenteredSection from './CenteredSection';
 import Form from './Form';
 import Input from './Input';
 import Section from './Section';
 import messages from './messages';
-import { loadRepos } from '../App/actions';
-import { changeUsername } from './actions';
-import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
@@ -41,7 +36,6 @@ export function HomePage({
   error,
   repos,
   onSubmitForm,
-  onChangeUsername,
 }) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
@@ -63,39 +57,18 @@ export function HomePage({
         <title>Home Page</title>
         <meta
           name="description"
-          content="A React.js Boilerplate application homepage"
+          content="Arena Spy"
         />
       </Helmet>
       <div>
         <CenteredSection>
           <H2>
-            <FormattedMessage {...messages.startProjectHeader} />
+            <FormattedMessage {...messages.findBuild} />
           </H2>
           <p>
-            <FormattedMessage {...messages.startProjectMessage} />
+            <FormattedMessage {...messages.findBuildInfo} />
           </p>
         </CenteredSection>
-        <Section>
-          <H2>
-            <FormattedMessage {...messages.trymeHeader} />
-          </H2>
-          <Form onSubmit={onSubmitForm}>
-            <label htmlFor="username">
-              <FormattedMessage {...messages.trymeMessage} />
-              <AtPrefix>
-                <FormattedMessage {...messages.trymeAtPrefix} />
-              </AtPrefix>
-              <Input
-                id="username"
-                type="text"
-                placeholder="mxstbr"
-                value={username}
-                onChange={onChangeUsername}
-              />
-            </label>
-          </Form>
-          <ReposList {...reposListProps} />
-        </Section>
       </div>
     </article>
   );
@@ -107,24 +80,23 @@ HomePage.propTypes = {
   repos: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   onSubmitForm: PropTypes.func,
   username: PropTypes.string,
-  onChangeUsername: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
-  repos: makeSelectRepos(),
-  username: makeSelectUsername(),
-  loading: makeSelectLoading(),
-  error: makeSelectError(),
+  // repos: makeSelectRepos(),
+  // username: makeSelectUsername(),
+  // loading: makeSelectLoading(),
+  // error: makeSelectError(),
 });
 
 export function mapDispatchToProps(dispatch) {
-  return {
-    onChangeUsername: evt => dispatch(changeUsername(evt.target.value)),
-    onSubmitForm: evt => {
-      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      dispatch(loadRepos());
-    },
-  };
+  // return {
+  //   onChangeUsername: evt => dispatch(changeUsername(evt.target.value)),
+  //   onSubmitForm: evt => {
+  //     if (evt !== undefined && evt.preventDefault) evt.preventDefault();
+  //     dispatch(loadRepos());
+  //   },
+  // };
 }
 
 const withConnect = connect(
